@@ -490,6 +490,9 @@ class ListingDetailsScreen extends StatelessWidget {
                                                       ],
                                                     ));
                                               },
+
+
+
                                               child: Container(
                                                 padding: EdgeInsets.all(10.h),
                                                 decoration: BoxDecoration(
@@ -504,6 +507,32 @@ class ListingDetailsScreen extends StatelessWidget {
                                                 ),
                                               ),
                                             ),
+                                            HSpace(10.w),
+                                            if (frontendListingCtrl.listingDetailsList.isNotEmpty &&
+                                                frontendListingCtrl.listingDetailsList[0].getSocialInfo != null)
+                                              for (var social in frontendListingCtrl.listingDetailsList[0].getSocialInfo!)
+                                                if ((social.socialIcon?.toString().toLowerCase() ?? '') == 'bi bi-globe' &&
+                                                    (social.socialUrl?.toString().isNotEmpty ?? false))
+                                                  GestureDetector(
+                                                    onTap: () => _launchSocialUrl(
+                                                      context,
+                                                      social.socialUrl.toString(),
+                                                      _getPlatformFromIcon(social.socialIcon.toString()),
+                                                    ),
+                                                    child: Container(
+                                                      padding: EdgeInsets.all(10.h),
+                                                      decoration: BoxDecoration(
+                                                        color: AppColors.mainColor,
+                                                        shape: BoxShape.circle,
+                                                      ),
+                                                      child: Image.asset(
+                                                        "$rootImageDir/cart.png", // Make sure you have cart.png in your assets
+                                                        width: 18.w,
+                                                        height: 18.h,
+                                                        color: AppColors.blackColor,
+                                                      ),
+                                                    ),
+                                                  ),
                                           ],
                                         ),
                                       ),
@@ -595,6 +624,9 @@ class ListingDetailsScreen extends StatelessWidget {
                                       if (frontendListingCtrl.selectedIndex == 5)
                                         socialMediaWidget(frontendListingCtrl, t, context),
                                     ]),
+
+
+
 
                                     
                                   ],
